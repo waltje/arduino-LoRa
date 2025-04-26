@@ -68,6 +68,10 @@ public:
   void idle();
   void sleep();
 
+  int getTxPower();
+  int getSpreadingFactor();
+  long getSignalBandwidth();
+
   void setTxPower(int level, int outputPin = PA_OUTPUT_PA_BOOST_PIN);
   void setFrequency(long frequency);
   void setSpreadingFactor(int sf);
@@ -105,9 +109,6 @@ private:
   void handleDio0Rise();
   bool isTransmitting();
 
-  int getSpreadingFactor();
-  long getSignalBandwidth();
-
   void setLdoFlag();
   void setLdoFlagForced(const boolean);
 
@@ -123,6 +124,7 @@ private:
   int _ss;
   int _reset;
   int _dio0;
+  int _level;
   long _frequency;
   int _packetIndex;
   int _implicitHeaderMode;

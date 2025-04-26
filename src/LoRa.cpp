@@ -450,6 +450,11 @@ void LoRaClass::sleep()
   writeRegister(REG_OP_MODE, MODE_LONG_RANGE_MODE | MODE_SLEEP);
 }
 
+int LoRaClass::getTxPower()
+{
+  return _level;
+}
+
 void LoRaClass::setTxPower(int level, int outputPin)
 {
   if (PA_OUTPUT_RFO_PIN == outputPin) {
@@ -460,6 +465,8 @@ void LoRaClass::setTxPower(int level, int outputPin)
       level = 14;
     }
 
+    _level = level;
+
     writeRegister(REG_PA_CONFIG, 0x70 | level);
   } else {
     // PA BOOST
@@ -467,6 +474,8 @@ void LoRaClass::setTxPower(int level, int outputPin)
       if (level > 20) {
         level = 20;
       }
+
+      _level = level;
 
       // subtract 3 from level, so 18 - 20 maps to 15 - 17
       level -= 3;
@@ -478,6 +487,9 @@ void LoRaClass::setTxPower(int level, int outputPin)
       if (level < 2) {
         level = 2;
       }
+
+      _level = level;
+
       //Default value PA_HF/LF or +17dBm
       writeRegister(REG_PA_DAC, 0x84);
       setOCP(100);
