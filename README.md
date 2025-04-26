@@ -81,6 +81,7 @@ This library exposes the LoRa radio directly, and allows you to send data to any
 No, you have to manage it by your self.
 
 **6) Which frequencies can I use?**
+
 You can use [this table](https://www.thethingsnetwork.org/docs/lorawan/frequencies-by-country/) to lookup the available frequencies by your country. The selectable frequency also depends on your hardware. You can lookup the data sheet or ask your supplier.
 
 Please also notice the frequency dependent duty cycles for legal reasons!
